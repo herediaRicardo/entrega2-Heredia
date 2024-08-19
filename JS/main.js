@@ -7,7 +7,7 @@
    - ¿Queres registarte? 1
          -Pasar a estar logueado
    - ¿Queres loguearte? 2
-         - Una vez logueado, poder subir publicaicones en portfolio
+         - Una vez logueado, puedo navegar normalmente en la web.
    - ¿Solo quieres navegar en la página? 3
          - Acá puedo navegar entre los tipos de trabajo
    - Salir
@@ -35,7 +35,8 @@ Mediante prompt escribo mail, mediante otro prompt escribo la clave.
 //Solo quiero navegar en la pagina//
 Elegir opcion de navegar libremente y elegir que tipo de trabajo quiero ver
 */
-
+document.addEventListener("DOMContentLoaded", function(){
+    
 
 let nombre;
 let edad;
@@ -46,24 +47,39 @@ let motionGraphic = "-Ministerio de la Ciudad \n-Infografía Greenpeace";
 let web = "-Landing Page para YPF \n-Api Lollapalloza \n-Fixture Mundial Qatar 2022";
 
 
-
-// function validarEmail(email){  
-//     const emailCheck = "@";
-//     return emailCheck.test(email);
-// }
-
 function registrarse(){
-    nombre = prompt("Escriba su nombre de usuario");
+    nombre = prompt("Escriba un nombre de usuario");  
+    if(nombre == null || nombre.length == 0){
+        alert("Escoge un nombre de usuario correcto");
+        registrarse();
+    }
     email = prompt("Escriba su mail");
-    clave = prompt("Escriba su clave \n (No mas de 7 caracteres)");          
+    if(email == null || email.length == 0 || /^\s+$/.test(email)){
+        alert("Escriba un mail correcto");
+        registrarse();
+    }
+    edad = prompt("Escriba su Edad");
+    if(isNaN(edad)){
+        alert("Escoge una edad correcta");
+        registrarse();
+    }
+    clave = prompt("Escriba su clave \n (No mas de 7 caracteres)"); 
+    if(clave == null || clave.length == 0){
+        alert("Escriba una clave correcta");
+        registrarse();
+    }
+       
     
-    alert("¡Excelente, te has registrado! \n \n" + "Usuario Creado:  " + nombre + "\nEMail registrado: " + email + "\nClave Registrada: " + clave); 
+    alert("¡Excelente, te has registrado! \n \n" + "Usuario Creado:  " + nombre + "\nEmail registrado: " + email + "\nEdad: " + edad +"\nClave Registrada: " + clave); 
+    //La clave solo aparece para que se vea su funcionalidad.
+    navegar();
 }
 
 function loguearse(){
     nombre = prompt("Escriba su nombre de usuario");
     clave = prompt("Escriba su clave");    
     alert("Perfecto, te has logueado correctamente " + nombre);
+    navegar();
 }
 
 function navegar(){
@@ -74,7 +90,7 @@ function navegar(){
         alert("Te mostramos los trabajos 3D que realizamos: \n" + tresD);
         navegar()
     }else if(portfolio === 2){
-        alert("Te mostramos los trabajos de Fotografía que realizamos: \n" + tresD);
+        alert("Te mostramos los trabajos de Fotografía que realizamos: \n" + fotografia);
         navegar()
     }else if(portfolio === 3){
         alert("Te mostramos los trabajos Motion Graphics que realizamos: \n" + motionGraphic);
@@ -96,7 +112,7 @@ function navegar(){
 
 function bienvenido(){  
 
-const inicio = parseFloat(prompt("¿Hola, como estás? Elige una opción \n 1 - Registrarse \n 2 - Loguearse \n 3 - Solo quiero navegar \n 4 - Salir"));
+let inicio = parseFloat(prompt("¿Hola, como estás? Elige una opción \n 1 - Registrarse \n 2 - Loguearse \n 3 - Solo quiero navegar \n 4 - Salir"));
 
     if(inicio === 1){
         registrarse();
@@ -111,22 +127,20 @@ const inicio = parseFloat(prompt("¿Hola, como estás? Elige una opción \n 1 - 
       inicio = 4;
     }else{
      alert("No has escogido ningun numero")
-     bienvenido()
+     bienvenido();
     }
 }
 
 alert("Bienvenido a la página Noiser Creative");
 
-bienvenido()
+bienvenido();
 
 while(inicio !== 4){
     if(inicio === 1){
         registrarse();
         alert("Navegar en la pagina");    
-        navegar();
     }else if(inicio === 2){
         loguearse();
-        navegar();
     }else if(inicio === 3){
         navegar();
     }
@@ -134,4 +148,12 @@ while(inicio !== 4){
         inicio = 4;
     }
 }
+    
+    
+    
+    
+    
+})
+
+
 
