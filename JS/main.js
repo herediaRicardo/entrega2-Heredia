@@ -54,7 +54,7 @@ function registrarse(){
         registrarse();
     }
     email = prompt("Escriba su mail");
-    if(email == null || email.length == 0 || /^\s+$/.test(email)){
+    if(email == null || email.length == 0){
         alert("Escriba un mail correcto");
         registrarse();
     }
