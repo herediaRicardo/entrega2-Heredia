@@ -9,6 +9,10 @@ h1{
     text-align: center;    
     font-size: 50px;
 }
+h2{
+    text-align: center;
+    margin-top: -20px;
+}
 section{
     height: auto;
     width: 60%;

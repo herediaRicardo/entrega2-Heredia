@@ -1,17 +1,37 @@
+//Desde los inputs, crear validaciones en inicio sesión
+//Mostrar cartel de bienvenida
+//Registrar cuenta - Mostrar cartel de registrado
+//Una vez realizados, envíar a la pagina principal
+//Pagina Portfolio
+//Con arrays, mostrar cada trabajo.
+//También en la página de contacto
+
 document.addEventListener("DOMContentLoaded", function(){   
 let nombre;
 let edad;
 let email;
-let tresD = "-Droide Star Wars \n-RPG \n-Escorpión mécanico";
-let fotografia = "-Hamburguesa \n-Afeitadora \n-Bar Sherlock";
-let motionGraphic = "-Ministerio de la Ciudad \n-Infografía Greenpeace";
-let web = "-Landing Page para YPF \n-Api Lollapalloza \n-Fixture Mundial Qatar 2022";
+let trabajos = [
+{año: 2024, trabajo: "Droide Star Wars", tipo: "3D"},
+{año: 2022, trabajo: "RPG", tipo: "3D"},
+{año: 2022, trabajo: "Escorpión Mécanico", tipo: "3D"},
+{año: 2023, trabajo: "Hamburguesa McDonalds", tipo: "fotografia"},
+{año: 2024, trabajo: "Afeitadora", tipo: "fotografia"},
+{año: 2023, trabajo: "Bar Sherlock", tipo: "fotografia"},
+{año: 2023, trabajo: "Ministerio de la ciudad", tipo: "motion graphic"},
+{año: 2022, trabajo: "Infografía Greenpeace", tipo: "motion graphic"},
+{año: 2022, trabajo: "Infografía estación espacial", tipo: "motion graphic"},
+{año: 2024, trabajo: "Landing Page YPF", tipo: "motion graphic"},
+{año: 2023, trabajo: "Lollapalloza", tipo: "web"},
+{año: 2023, trabajo: "Fixture Mundial 2022", tipo: "web"}
+];
+let tresD = trabajos.filter(e => e.tipo === "3D");
+let motionGraphic = trabajos.filter(e => e.tipo === "Motion Graphic");
+let web = trabajos.filter(e => e.tipo === "web");
+let fotografia = trabajos.filter(e => e.tipo === "fotografia");
 
 function mensajeAlert(mensaje){
     alert(mensaje);
 }
-
-
 
 function registrarse(){
 
@@ -26,7 +46,7 @@ function registrarse(){
         let mailIncorrecto = "Escriba un mail correcto"
         mensajeAlert(mailIncorrecto);
         registrarse();
-    }
+    }2
     edad = prompt("Escriba su Edad");
     if(isNaN(edad)){
         let edadIncorrecta = "Escoge una edad correcta"
@@ -59,36 +79,46 @@ function navegar(){
     let salir = false;
     while(!salir){
 
-    const portfolio = parseFloat(prompt("¿Que trabajos queres ver? Elige una opción \n 1 - 3D \n 2 - Fotografía \n 3 - Motion Graphic \n 4 - Desarrollo Web\n \n Otras opciones\n 5 - Registrarse\n 6 - Loguearse\n 7 - Salir"));  
+    const portfolio = parseFloat(prompt("¿Que trabajos queres ver? Elige una opción \n 1 - 3D \n 2 - Fotografía \n 3 - Motion Graphic \n 4 - Desarrollo Web \n 5 - Todo\n \n Otras opciones\n 6 - Registrarse\n 7 - Loguearse\n 8 - Salir"));  
 
     switch (portfolio){
         case 1:
-            let return3D = `Te mostramos los trabajos 3D que realizamos:\n ${tresD}`;
-            mensajeAlert(return3D);            
+            tresD.forEach(e => {
+                mensajeAlert(`Año: ${e.año}\nTrabajo: ${e.trabajo}\nTipo: ${e.tipo}`);
+              });           
             navegar();
           break;
         case 2:
-            let returnFotografia= `Te mostramos los trabajos de Fotografía que realizamos:\n ${fotografia}`;
-            mensajeAlert(returnFotografia);   
+            fotografia.forEach(e => {
+                mensajeAlert(`Año: ${e.año}\nTrabajo: ${e.trabajo}\nTipo: ${e.tipo}`);
+              }); 
             navegar();
           break;
         case 3:
-            let returnMotion= `Te mostramos los trabajos Motion Graphics que realizamos:\n ${motionGraphic}`;
-            mensajeAlert(returnMotion);   
+            web.forEach(e => {
+                mensajeAlert(`Año: ${e.año}\nTrabajo: ${e.trabajo}\nTipo: ${e.tipo}`);
+              });
             navegar();
           break;
         case 4:
-            let returnWeb= `Te mostramos los trabajos de Desarrollo Web que realizamos:\n ${web}`;
-            mensajeAlert(returnWeb);   
+            motionGraphic.forEach(e => {
+                mensajeAlert(`Año: ${e.año}\nTrabajo: ${e.trabajo}\nTipo: ${e.tipo}`);
+              }); 
             navegar();
           break;
         case 5:
-            registrarse();
+            trabajos.forEach(e => {
+                mensajeAlert("`Año: ${e.año}\nTrabajo: ${e.trabajo}\nTipo: ${e.tipo}`");
+              });   
+            navegar();
           break;
         case 6:
-            loguearse();
+            registrarse();
           break;
         case 7:
+            loguearse();
+          break;
+        case 8:
             salir = true;
           break;
         default:
