@@ -1,11 +1,3 @@
-//Desde los inputs, crear validaciones en inicio sesión
-//Mostrar cartel de bienvenida
-//Registrar cuenta - Mostrar cartel de registrado
-//Una vez realizados, envíar a la pagina principal
-//Pagina Portfolio
-//Con arrays, mostrar cada trabajo.
-//También en la página de contacto
-
 document.addEventListener("DOMContentLoaded", function(){   
 let nombre;
 let edad;
@@ -38,7 +30,7 @@ function registrarse(){
     nombre = prompt("Escriba un nombre de usuario");  
     if(nombre == null || nombre.length == 0){
         let nombreIncorrecto = "Escriba un nombre correcto"
-        mensajeAlert(nombreIncorrecto); //Acá habría que corregir estos, también podemos declarar la variable con su mensaje.
+        mensajeAlert(nombreIncorrecto);
         registrarse();
     }
     email = prompt("Escriba su mail");
